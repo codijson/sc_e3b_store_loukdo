@@ -117,6 +117,7 @@ declare global {
   const useNavigation: typeof import('../../app/composables/useNavigation').useNavigation
   const useNuxtApp: typeof import('../../node_modules/nuxt/dist/app/nuxt').useNuxtApp
   const useNuxtData: typeof import('../../node_modules/nuxt/dist/app/composables/asyncData').useNuxtData
+  const useNuxtDevTools: typeof import('../../node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools').useNuxtDevTools
   const useOwnI18n: typeof import('../../app/composables/useOwnI18n').useOwnI18n
   const usePageSeo: typeof import('../../app/composables/usePageSeo').usePageSeo
   const usePreviewMode: typeof import('../../node_modules/nuxt/dist/app/composables/preview').usePreviewMode
@@ -322,6 +323,7 @@ declare module 'vue' {
     readonly useNavigation: UnwrapRef<typeof import('../../app/composables/useNavigation')['useNavigation']>
     readonly useNuxtApp: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/nuxt')['useNuxtApp']>
     readonly useNuxtData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/asyncData')['useNuxtData']>
+    readonly useNuxtDevTools: UnwrapRef<typeof import('../../node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools')['useNuxtDevTools']>
     readonly useOwnI18n: UnwrapRef<typeof import('../../app/composables/useOwnI18n')['useOwnI18n']>
     readonly usePageSeo: UnwrapRef<typeof import('../../app/composables/usePageSeo')['usePageSeo']>
     readonly usePreviewMode: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/preview')['usePreviewMode']>

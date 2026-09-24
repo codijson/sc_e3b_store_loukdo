@@ -1,0 +1,179 @@
+import { defineComponent, mergeProps, createVNode, resolveDynamicComponent, useSSRContext } from 'vue';
+import { ssrRenderAttrs, ssrRenderComponent, ssrRenderClass, ssrRenderList, ssrRenderSlot, ssrRenderVNode } from 'vue/server-renderer';
+
+const _sfc_main$2 = /* @__PURE__ */ defineComponent({
+  __name: "Skeleton",
+  __ssrInlineRender: true,
+  props: {
+    as: { default: "div" },
+    width: { default: "100%" },
+    height: { default: "0.85rem" },
+    rounded: { default: "md" },
+    circle: { type: Boolean, default: false }
+  },
+  setup(__props) {
+    const props = __props;
+    const roundedClass = {
+      sm: "rounded-sm",
+      md: "rounded-md",
+      lg: "rounded-lg",
+      xl: "rounded-xl",
+      full: "rounded-full"
+    };
+    return (_ctx, _push, _parent, _attrs) => {
+      ssrRenderVNode(_push, createVNode(resolveDynamicComponent(props.as), mergeProps({
+        class: ["animate-pulse bg-ink-900/10 dark:bg-white/10", props.circle ? "rounded-full" : roundedClass[props.rounded]],
+        style: { width: props.circle ? props.height : props.width, height: props.height },
+        "aria-hidden": "true"
+      }, _attrs), null), _parent);
+    };
+  }
+});
+const _sfc_setup$2 = _sfc_main$2.setup;
+_sfc_main$2.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/ui/Skeleton.vue");
+  return _sfc_setup$2 ? _sfc_setup$2(props, ctx) : void 0;
+};
+const __nuxt_component_0$1 = Object.assign(_sfc_main$2, { __name: "Skeleton" });
+const _sfc_main$1 = /* @__PURE__ */ defineComponent({
+  __name: "SkeletonBlock",
+  __ssrInlineRender: true,
+  props: {
+    eyebrow: { type: Boolean, default: false },
+    headingWidth: { default: "20rem" },
+    subtitle: { type: Boolean, default: true },
+    subtitleLines: { default: 2 },
+    align: { default: "center" },
+    cards: { default: 0 },
+    columns: { default: 3 }
+  },
+  setup(__props) {
+    const props = __props;
+    const columnsClass = {
+      1: "grid-cols-1",
+      2: "sm:grid-cols-2",
+      3: "sm:grid-cols-2 lg:grid-cols-3",
+      4: "sm:grid-cols-2 lg:grid-cols-4"
+    };
+    return (_ctx, _push, _parent, _attrs) => {
+      const _component_Skeleton = __nuxt_component_0$1;
+      _push(`<div${ssrRenderAttrs(mergeProps({
+        class: __props.align === "center" ? "mx-auto text-center" : "text-left"
+      }, _attrs))}>`);
+      if (__props.eyebrow) {
+        _push(ssrRenderComponent(_component_Skeleton, {
+          width: "8rem",
+          height: "0.75rem",
+          rounded: "full",
+          class: __props.align === "center" ? "mx-auto" : ""
+        }, null, _parent));
+      } else {
+        _push(`<!---->`);
+      }
+      _push(ssrRenderComponent(_component_Skeleton, {
+        width: __props.headingWidth,
+        height: "2rem",
+        rounded: "lg",
+        class: ["mt-3 max-w-full", __props.align === "center" ? "mx-auto" : ""]
+      }, null, _parent));
+      if (__props.subtitle) {
+        _push(`<div class="${ssrRenderClass([__props.align === "center" ? "mx-auto max-w-xl" : "max-w-xl", "mt-5 space-y-2"])}"><!--[-->`);
+        ssrRenderList(__props.subtitleLines, (line) => {
+          _push(ssrRenderComponent(_component_Skeleton, {
+            key: line,
+            height: "0.85rem",
+            width: line === __props.subtitleLines ? "60%" : "100%",
+            class: __props.align === "center" ? "mx-auto" : ""
+          }, null, _parent));
+        });
+        _push(`<!--]--></div>`);
+      } else {
+        _push(`<!---->`);
+      }
+      if (__props.cards > 0) {
+        _push(`<div class="${ssrRenderClass([columnsClass[props.columns], "mt-10 grid gap-6"])}"><!--[-->`);
+        ssrRenderList(__props.cards, (card) => {
+          _push(`<div class="rounded-xl2 border border-ink-900/10 p-6 text-left dark:border-white/10">`);
+          _push(ssrRenderComponent(_component_Skeleton, {
+            circle: "",
+            height: "2.75rem",
+            rounded: "full"
+          }, null, _parent));
+          _push(ssrRenderComponent(_component_Skeleton, {
+            width: "70%",
+            height: "1.1rem",
+            rounded: "md",
+            class: "mt-5"
+          }, null, _parent));
+          _push(`<div class="mt-3 space-y-2">`);
+          _push(ssrRenderComponent(_component_Skeleton, { height: "0.8rem" }, null, _parent));
+          _push(ssrRenderComponent(_component_Skeleton, {
+            width: "80%",
+            height: "0.8rem"
+          }, null, _parent));
+          _push(`</div></div>`);
+        });
+        _push(`<!--]--></div>`);
+      } else {
+        _push(`<!---->`);
+      }
+      _push(`</div>`);
+    };
+  }
+});
+const _sfc_setup$1 = _sfc_main$1.setup;
+_sfc_main$1.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/ui/SkeletonBlock.vue");
+  return _sfc_setup$1 ? _sfc_setup$1(props, ctx) : void 0;
+};
+const __nuxt_component_0 = Object.assign(_sfc_main$1, { __name: "SkeletonBlock" });
+const _sfc_main = /* @__PURE__ */ defineComponent({
+  __name: "BaseCard",
+  __ssrInlineRender: true,
+  props: {
+    padded: { type: Boolean, default: true },
+    loading: { type: Boolean, default: false }
+  },
+  setup(__props) {
+    return (_ctx, _push, _parent, _attrs) => {
+      const _component_Skeleton = __nuxt_component_0$1;
+      _push(`<div${ssrRenderAttrs(mergeProps({
+        class: ["card transition-transform duration-300 hover:-translate-y-1", __props.padded ? "p-6 md:p-8" : ""]
+      }, _attrs))}>`);
+      if (__props.loading) {
+        _push(`<div class="space-y-3" aria-hidden="true">`);
+        _push(ssrRenderComponent(_component_Skeleton, {
+          circle: "",
+          height: "2.5rem"
+        }, null, _parent));
+        _push(ssrRenderComponent(_component_Skeleton, {
+          width: "65%",
+          height: "1.1rem",
+          rounded: "md",
+          class: "mt-4"
+        }, null, _parent));
+        _push(ssrRenderComponent(_component_Skeleton, { height: "0.8rem" }, null, _parent));
+        _push(ssrRenderComponent(_component_Skeleton, {
+          width: "80%",
+          height: "0.8rem"
+        }, null, _parent));
+        _push(`</div>`);
+      } else {
+        ssrRenderSlot(_ctx.$slots, "default", {}, null, _push, _parent);
+      }
+      _push(`</div>`);
+    };
+  }
+});
+const _sfc_setup = _sfc_main.setup;
+_sfc_main.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/ui/BaseCard.vue");
+  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
+};
+const __nuxt_component_1 = Object.assign(_sfc_main, { __name: "BaseCard" });
+
+export { __nuxt_component_0 as _, __nuxt_component_1 as a };
+//# sourceMappingURL=BaseCard-_Bf1gK1_.mjs.map

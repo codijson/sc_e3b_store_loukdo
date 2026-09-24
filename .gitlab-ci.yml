@@ -1,0 +1,45 @@
+# .gitlab-ci.yml
+default:
+  image: docker:24.0.5-dind
+
+stages:
+  - build
+  - deploy
+
+variables:
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
+
+### DEV env
+build_dev:
+  stage: build
+  only:
+    - develop
+  services:
+    - docker:24.0.5-dind
+  before_script:
+    - docker info
+  script:
+    - source "${DEV_SERVER}"
+    - echo "${REG_PASS}" | docker login --username ${REG_USER} --password-stdin ${REGISTRY}
+    - cp ${DEV_ENV} .env
+    - source ${DEV_ENV}
+    - docker build -t ${REGISTRY}/${REPO}:latest .
+    - docker push ${REGISTRY}/${REPO}:latest
+
+deploy_dev:
+  stage: deploy
+  image: alpine:3.19
+  only:
+    - develop
+  before_script:
+    - apk add --no-cache openssh
+  script:
+    - source "${DEV_SERVER}"
+    - echo -e "${SSH_KEY}" > ssh_key
+    - chmod 400 ssh_key
+    - ssh -i ssh_key -o StrictHostKeyChecking=no ${USERNAME}@${HOST} "
+      docker pull ${REGISTRY}/${REPO}:latest &&
+      docker stop ${SERVICE} || true &&
+      docker rm ${SERVICE} || true &&
+      docker run -d --name ${SERVICE} -p 9050:9050 --restart always ${REGISTRY}/${REPO}:latest"

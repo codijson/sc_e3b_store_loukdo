@@ -1,0 +1,107 @@
+import { u as useOwnI18n, a as useSeoMeta, b as useHead } from './server.mjs';
+import { ref, readonly } from 'vue';
+
+const SITE_NAME = "Loukdo";
+const SITE_URL = "https://loukdo.com";
+const DEFAULT_IMAGE = {
+  url: `${SITE_URL}/og/home.png`,
+  width: 1200,
+  height: 630,
+  alt: "Loukdo — Chat. Order. Delivered."
+};
+class SeoBuilder {
+  title = SITE_NAME;
+  description = "";
+  path = "/";
+  image = DEFAULT_IMAGE;
+  locale = "en_US";
+  type = "website";
+  ogImageType = "image/png";
+  static from(payload) {
+    return new SeoBuilder().withTitle(payload.title).withDescription(payload.description).withPath(payload.path).withImage(payload.image ?? DEFAULT_IMAGE).withLocale(payload.locale ?? "en_US").withType(payload.type ?? "website").withOgImageType(payload.ogImageType ?? "image/png");
+  }
+  withTitle(title) {
+    this.title = title;
+    return this;
+  }
+  withDescription(description) {
+    this.description = description;
+    return this;
+  }
+  withPath(path) {
+    this.path = path;
+    return this;
+  }
+  withImage(image) {
+    this.image = image;
+    return this;
+  }
+  withLocale(locale) {
+    this.locale = locale;
+    return this;
+  }
+  withType(type) {
+    this.type = type;
+    return this;
+  }
+  withOgImageType(ogImageType = "image/png") {
+    this.ogImageType = ogImageType;
+    return this;
+  }
+  get canonical() {
+    return `${SITE_URL}${this.path}`;
+  }
+  build() {
+    return {
+      title: this.title,
+      description: this.description,
+      ogTitle: `${this.title} · ${SITE_NAME}`,
+      ogDescription: this.description,
+      ogUrl: this.canonical,
+      ogSiteName: SITE_NAME,
+      ogType: this.type,
+      ogLocale: this.locale,
+      ogImage: this.image.url,
+      ogImageType: this.ogImageType,
+      ogImageWidth: this.image.width,
+      ogImageHeight: this.image.height,
+      ogImageAlt: this.image.alt ?? this.title,
+      twitterCard: "summary_large_image",
+      twitterTitle: this.title,
+      twitterDescription: this.description,
+      twitterImage: this.image.url
+    };
+  }
+  buildLinkTags() {
+    return [{ rel: "canonical", href: this.canonical }];
+  }
+}
+const LOCALE_OG_MAP = {
+  en: "en_US",
+  km: "km_KH",
+  zh: "zh_CN"
+};
+function usePageSeo(options) {
+  const { t, locale } = useOwnI18n();
+  const title = t(options.titleKey);
+  const description = t(options.descriptionKey);
+  const seo = SeoBuilder.from({
+    title,
+    description,
+    path: options.path,
+    image: options.image,
+    locale: LOCALE_OG_MAP[locale.value] ?? "en_US"
+    // Only pass ogImageType when `options.image` is a real PNG/JPG/GIF.
+    // SVG has no valid og:image:type and most crawlers won't render it
+    // in previews anyway, so we omit the tag rather than lie about it.
+  });
+  useSeoMeta(seo.build());
+  useHead({ link: seo.buildLinkTags() });
+}
+function useSkeleton(minDurationMs = 350) {
+  const isLoading = ref(true);
+  return { isLoading: readonly(isLoading) };
+}
+
+export { useSkeleton as a, usePageSeo as u };
+//# sourceMappingURL=useSkeleton-Cc_B2Jsk.mjs.map

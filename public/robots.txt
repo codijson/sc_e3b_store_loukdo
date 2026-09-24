@@ -1,4 +1,3 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://www.loukdo.com/sitemap.xml
+version https://git-lfs.github.com/spec/v1
+oid sha256:eaed22ccf6ddbcb6f8cf8ef3dd83980c639202fdcd696471ee0c98cccafebf64
+size 68

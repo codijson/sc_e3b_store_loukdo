@@ -1,0 +1,54 @@
+import { _ as __nuxt_component_0$1 } from './BaseCard-_Bf1gK1_.mjs';
+import { defineComponent, mergeProps, useSSRContext } from 'vue';
+import { ssrRenderComponent, ssrRenderAttrs, ssrInterpolate } from 'vue/server-renderer';
+
+const _sfc_main = /* @__PURE__ */ defineComponent({
+  __name: "SectionHeading",
+  __ssrInlineRender: true,
+  props: {
+    eyebrow: { default: void 0 },
+    title: {},
+    subtitle: { default: void 0 },
+    align: { default: "center" },
+    loading: { type: Boolean, default: false }
+  },
+  setup(__props) {
+    return (_ctx, _push, _parent, _attrs) => {
+      const _component_SkeletonBlock = __nuxt_component_0$1;
+      if (__props.loading) {
+        _push(ssrRenderComponent(_component_SkeletonBlock, mergeProps({
+          eyebrow: Boolean(__props.eyebrow),
+          subtitle: Boolean(__props.subtitle),
+          align: __props.align,
+          cards: 0
+        }, _attrs), null, _parent));
+      } else {
+        _push(`<div${ssrRenderAttrs(mergeProps({
+          class: __props.align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-2xl text-left"
+        }, _attrs))}>`);
+        if (__props.eyebrow) {
+          _push(`<p class="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-brand-500">${ssrInterpolate(__props.eyebrow)}</p>`);
+        } else {
+          _push(`<!---->`);
+        }
+        _push(`<h2 class="text-3xl font-extrabold leading-tight text-ink-900 dark:text-white md:text-4xl">${ssrInterpolate(__props.title)}</h2>`);
+        if (__props.subtitle) {
+          _push(`<p class="mt-4 text-base text-ink-500 dark:text-ink-200 md:text-lg">${ssrInterpolate(__props.subtitle)}</p>`);
+        } else {
+          _push(`<!---->`);
+        }
+        _push(`</div>`);
+      }
+    };
+  }
+});
+const _sfc_setup = _sfc_main.setup;
+_sfc_main.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/ui/SectionHeading.vue");
+  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
+};
+const __nuxt_component_0 = Object.assign(_sfc_main, { __name: "SectionHeading" });
+
+export { __nuxt_component_0 as _ };
+//# sourceMappingURL=SectionHeading-DOTHL2r2.mjs.map
