@@ -1,9 +1,8 @@
-import axios from "axios";
-import * as xlsx from "xlsx";
-
-// Use the proxy path for local development, or direct export link for server environments
-const EXCEL_URL = "/api/sheets";
-// const EXCEL_URL = 'https://docs.google.com/spreadsheets/d/1PvI0SQRZQ98P1-KycLABgriUFfjghVSxEzOQJ6-a0rs/export?format=xlsx'
+// Google Sheets published as CSV (first sheet). No external libraries needed.
+const CSV_URL =
+  "https://docs.google.com/spreadsheets/d/1PvI0SQRZQ98P1-KycLABgriUFfjghVSxEzOQJ6-a0rs/export?format=csv";
+// Proxy path for local development (avoids CORS in the browser)
+// const CSV_URL = "/api/sheets";
 
 type LangCode = "en" | "km" | "zh";
 type Locales = Record<LangCode, Record<string, any>>;
@@ -29,32 +28,42 @@ export async function fetchRemoteTranslations(): Promise<Locales> {
   }
 
   try {
-    const response = await axios.get(EXCEL_URL, { responseType: "arraybuffer" });
-    const workbook = xlsx.read(response.data, { type: "buffer" });
-
-    // Assumes your table is on the first sheet (named "localize" or whichever is first)
-    const sheetName = workbook.SheetNames[0];
-    if (!sheetName) {
-      throw new Error("Workbook contains no sheets");
+    const response = await fetch(CSV_URL);
+    if (!response.ok) {
+      throw new Error(`Request failed with status ${response.status}`);
     }
 
-    const sheet = workbook.Sheets[sheetName];
-    if (!sheet) {
-      throw new Error(`Sheet "${sheetName}" not found`);
+    const text = (await response.text()).replace(/^\uFEFF/, ""); // strip BOM
+    const rows = parseCSV(text);
+
+    const header = rows[0];
+    if (!header) {
+      throw new Error("Sheet is empty");
     }
 
-    const rows = xlsx.utils.sheet_to_json<Record<string, any>>(sheet);
+    const columns = header.map(h => h.trim());
+    const keyIndex = columns.indexOf("Key");
+    if (keyIndex === -1) {
+      throw new Error('Column "Key" not found in sheet header');
+    }
+
+    // Map each language column to its index
+    const langColumns: { index: number; langCode: LangCode }[] = [];
+    Object.entries(languageMap).forEach(([colName, langCode]) => {
+      const index = columns.indexOf(colName);
+      if (index !== -1) langColumns.push({ index, langCode });
+    });
+
     const locales = createEmptyLocales();
 
-    rows.forEach(row => {
-      const key = row["Key"];
+    rows.slice(1).forEach(row => {
+      const key = row[keyIndex]?.trim();
       if (!key) return;
 
-      Object.entries(languageMap).forEach(([colName, langCode]) => {
-        const translation = row[colName];
-
-        if (translation !== undefined) {
-          setNestedProperty(locales[langCode], String(key), translation);
+      langColumns.forEach(({ index, langCode }) => {
+        const translation = row[index];
+        if (translation) {
+          setNestedProperty(locales[langCode], key, translation);
         }
       });
     });
@@ -66,6 +75,53 @@ export async function fetchRemoteTranslations(): Promise<Locales> {
     console.error("Error fetching real-time translations from Google Sheets:", error);
     return cachedTranslations ?? createEmptyLocales();
   }
+}
+
+// Minimal CSV parser: handles quoted fields, escaped quotes (""), commas and
+// newlines inside quotes, and both \n and \r\n line endings.
+function parseCSV(text: string): string[][] {
+  const rows: string[][] = [];
+  let row: string[] = [];
+  let field = "";
+  let inQuotes = false;
+
+  for (let i = 0; i < text.length; i++) {
+    const char = text.charAt(i);
+
+    if (inQuotes) {
+      if (char === '"') {
+        if (text.charAt(i + 1) === '"') {
+          field += '"';
+          i++;
+        } else {
+          inQuotes = false;
+        }
+      } else {
+        field += char;
+      }
+    } else if (char === '"') {
+      inQuotes = true;
+    } else if (char === ",") {
+      row.push(field);
+      field = "";
+    } else if (char === "\n" || char === "\r") {
+      if (char === "\r" && text.charAt(i + 1) === "\n") i++;
+      row.push(field);
+      rows.push(row);
+      row = [];
+      field = "";
+    } else {
+      field += char;
+    }
+  }
+
+  // Last row without a trailing newline
+  if (field !== "" || row.length > 0) {
+    row.push(field);
+    rows.push(row);
+  }
+
+  return rows;
 }
 
 function setNestedProperty(obj: Record<string, any>, path: string, value: any) {
