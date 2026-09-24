@@ -1,0 +1,32 @@
+{
+  "name": "store_loukdo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Loukdo Store — Chat. Order. Delivered. Social commerce workspace for Cambodian sellers.",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "typecheck": "nuxt typecheck"
+  },
+  "dependencies": {
+    "@nuxtjs/color-mode": "^3.5.2",
+    "nuxt": "^3.15.4",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "^6.13.1",
+    "@types/node": "^22.10.7",
+    "sass": "^1.83.4",
+    "typescript": "^5.7.3",
+    "vue-tsc": "^2.2.0"
+  },
+  "resolutions": {
+    "@babel/generator": "^7.26.2"
+  }
+}

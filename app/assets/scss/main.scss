@@ -1,0 +1,201 @@
+@use "variables" as *;
+@use "mixins" as *;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+@include reduced-motion {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--surface-light);
+  color: var(--text-light);
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base);
+
+  &.dark,
+  .dark & {
+    background-color: var(--surface-dark);
+    color: var(--text-dark);
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+}
+
+// Locale-aware body font: Khmer/Chinese get their native pairing automatically
+// via the font-family stack, no extra class needed.
+
+::selection {
+  background: rgba(58, 114, 245, 0.25);
+}
+
+a,
+button {
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.shell {
+  width: 100%;
+  max-width: var(--shell-max-width);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+
+  @include respond(lg) {
+    padding-inline: 2.5rem;
+  }
+}
+
+.card {
+  @include card-surface;
+}
+
+// Wire route flow chaos strands illustration
+.chaos-strand {
+  stroke-linecap: round;
+  fill: none;
+}
+
+// ---------------------------------------------------------------------------
+// Scroll reveal (v-reveal directive) — sections/components animate in once
+// as they cross into the viewport.
+// ---------------------------------------------------------------------------
+.reveal {
+  opacity: 0;
+  transition:
+    opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal-up {
+  transform: translateY(28px);
+}
+
+.reveal-left {
+  transform: translateX(-36px);
+}
+
+.reveal-right {
+  transform: translateX(36px);
+}
+
+.reveal-scale {
+  transform: scale(0.94);
+}
+
+.reveal-fade {
+  transform: none;
+}
+
+.reveal.is-revealed {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+// ---------------------------------------------------------------------------
+// Page / layout transitions (Nuxt <NuxtPage>/<NuxtLayout> built-ins)
+// ---------------------------------------------------------------------------
+.page-enter-active,
+.page-leave-active {
+  transition:
+    opacity 260ms ease,
+    transform 260ms ease;
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.layout-enter-active,
+.layout-leave-active {
+  transition: opacity 220ms ease;
+}
+
+.layout-enter-from,
+.layout-leave-to {
+  opacity: 0;
+}
+
+// ---------------------------------------------------------------------------
+// Off-canvas nav drawer (AppHeader mobile menu)
+// ---------------------------------------------------------------------------
+.drawer-slide-enter-active,
+.drawer-slide-leave-active {
+  transition: transform 340ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.drawer-slide-enter-from,
+.drawer-slide-leave-to {
+  transform: translateX(-100%);
+}
+
+.drawer-slide-enter-to,
+.drawer-slide-leave-from {
+  transform: translateX(0);
+}
+
+.drawer-fade-enter-active,
+.drawer-fade-leave-active {
+  transition: opacity 260ms ease;
+}
+
+.drawer-fade-enter-from,
+.drawer-fade-leave-to {
+  opacity: 0;
+}
+
+// ---------------------------------------------------------------------------
+// Scroll-to-top / scroll-to-bottom floating buttons
+// ---------------------------------------------------------------------------
+.fab-enter-active,
+.fab-leave-active {
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+
+.fab-enter-from,
+.fab-leave-to {
+  opacity: 0;
+  transform: translateY(12px) scale(0.85);
+}
+
+// Small inline state transitions (e.g. form success message)
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+
+.fade-slide-enter-from,
+.fade-slide-leave-to {
+  opacity: 0;
+  transform: translateY(-6px);
+}

@@ -1,0 +1,72 @@
+:root {
+  --font-display: "Plus Jakarta Sans", "Noto Sans Khmer", "Noto Sans SC", sans-serif;
+  --font-body: "Inter", "Noto Sans Khmer", "Noto Sans SC", sans-serif;
+
+  --color-brand-500: #3a72f5;
+  --color-brand-600: #2454d6;
+  --color-brand-900: #152c66;
+
+  --color-primary-low: #f4f9fd;
+  --color-primary-light: #e8f2fd;
+  --color-primary: #0e529a;
+  --color-primary-medium: #73b0f2;
+  --color-primary-high: #083a6d;
+  --color-primary-dark: #072546;
+
+  --color-secondary-low: #e3f6f4;
+  --color-secondary-light: #a1e3db;
+  --color-secondary: #14b8a6;
+  --color-secondary-medium: #119c8d;
+  --color-secondary-high: #0d786c;
+  --color-secondary-dark: #09534b;
+
+  --color-success-low: #e4f8ec;
+  --color-success-light: #a7e8bf;
+  --color-success: #22c55e;
+  --color-success-medium: #1da750;
+  --color-success-high: #16803d;
+  --color-success-dark: #0f592a;
+
+  --color-warning-low: #fef3e2;
+  --color-warning-light: #fbd89d;
+  --color-warning: #f59e0b;
+  --color-warning-medium: #d08609;
+  --color-warning-high: #9f6707;
+  --color-warning-dark: #6e4705;
+
+  --color-danger-low: #fde9e9;
+  --color-danger-light: #f9b4b4;
+  --color-danger: #ef4444;
+  --color-danger-medium: #cb3a3a;
+  --color-danger-high: #9b2c2c;
+  --color-danger-dark: #6c1f1f;
+
+  --color-info-low: #e2f4fc;
+  --color-info-light: #9fdbf6;
+  --color-info: #0ea5e9;
+  --color-info-medium: #0c8cc6;
+  --color-info-high: #096b97;
+  --color-info-dark: #064a69;
+
+  --surface-light: #fafafa;
+  --surface-dark: #191919;
+
+  --panel-light: #ffffff;
+  --panel-dark: #000000;
+
+  --border-light: #a2cbf6;
+  --border-dark: #0b3e75;
+
+  --text-light: #12141f;
+  --text-dark: #f4f6fa;
+
+  --radius-card: 1rem;
+  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  --shell-max-width: 80rem;
+}
+
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;

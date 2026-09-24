@@ -1,0 +1,195 @@
+{
+  "meta": {
+    "siteName": "Loukdo"
+  },
+  "nav": {
+    "home": "首页",
+    "features": "功能",
+    "about": "关于我们",
+    "contact": "联系我们",
+    "getStarted": "立即开始"
+  },
+  "a11y": {
+    "openMenu": "打开菜单",
+    "themeToggle": "切换主题",
+    "closeMenu": "关闭菜单",
+    "mobileNav": "移动导航",
+    "scrollToTop": "滚动到顶部",
+    "scrollToBottom": "滚动到底部"
+  },
+  "theme": {
+    "light": "浅色",
+    "system": "跟随系统",
+    "dark": "深色"
+  },
+  "footer": {
+    "tagline": "是一个社交电商工作台，将每一次对话转化为已确认、已付款、已送达的订单。",
+    "menu": "菜单",
+    "legal": "法律条款",
+    "termsConditions": "条款与条件",
+    "termsOfService": "服务条款",
+    "userConduct": "用户行为准则",
+    "privacy": "隐私与Cookie政策",
+    "followUs": "关注我们",
+    "copyright": "© {year} Loukdo。本地卓越，全球标准。"
+  },
+  "home": {
+    "seoTitle": "聊天。下单。送达。",
+    "seoDescription": "Loukdo 将 Facebook、Instagram、Telegram、TikTok 和 WhatsApp 汇聚到一个收件箱，让你无需切换应用即可回复消息、创建订单、收款并预约配送。",
+    "eyebrow": "在柬埔寨打造，为柬埔寨卖家而生",
+    "title": "聊天。下单。送达。",
+    "description": "Loukdo 将 Facebook、Instagram、Telegram、TikTok 和 WhatsApp 汇聚到一个收件箱，让你无需切换应用即可回复消息、创建订单、收款并预约配送。",
+    "ctaPrimary": "免费试用",
+    "ctaSecondary": "预约演示",
+    "heroImageAlt": "Loukdo 统一收件箱在平板和手机上的展示，背景为金边",
+    "problem": {
+      "title": "创业不是为了同时管理六个应用",
+      "subtitle": "多渠道销售的混乱正在让你失去客户和内心的平静。",
+      "lostTitle": "订单容易遗失",
+      "lostBody": "客户在 Facebook 评论区询问价格，随后又在 Telegram 发消息，最后又想在 Instagram 上下单。没有统一视图，订单就会从缝隙中溜走，造成收入损失和困扰。",
+      "blindTitle": "团队之间互相看不到",
+      "blindBody": "两名员工因为使用不同设备或查看不同应用，给同一位客户报出了不同的价格。这会造成混乱，损害品牌信任，并拖慢销售流程。"
+    },
+    "chaos": {
+      "title": "结束混乱",
+      "subtitle": "把一切都集中到一个安全、易于管理的空间。"
+    }
+  },
+  "features": {
+    "seoTitle": "功能",
+    "seoDescription": "在一个无缝平台中管理对话、处理订单、发展业务所需的一切。",
+    "title": "为现代卖家打造的强大功能",
+    "subtitle": "在一个无缝平台中管理对话、处理订单、发展业务所需的一切。",
+    "omnichat": {
+      "title": "全渠道收件箱",
+      "body": "一个收件箱，覆盖所有渠道。将客户互动整合到单一强大的界面中，再也不会错过任何一条消息。",
+      "point1": "统一客户档案",
+      "point2": "分配对话",
+      "point3": "常用回复",
+      "point4": "自动回复",
+      "point5": "评论转收件箱",
+      "cta": "了解全渠道收件箱如何运作"
+    },
+    "orders": {
+      "title": "订单管理",
+      "body": "三步即可将一条消息变成一笔订单。从对话到完成交易，全程无需离开聊天窗口。",
+      "point1": "在聊天中直接创建订单",
+      "point2": "支持 KHQR / Bakong / ABA / 货到付款",
+      "point3": "预约配送",
+      "cta": "了解订单流程如何运作"
+    },
+    "steps": {
+      "title": "从第一条消息到订单送达",
+      "subtitle": "开始使用 Loukdo 简单又直接。",
+      "step1Title": "连接你的渠道",
+      "step1Body": "几分钟内即可关联 Facebook、Instagram 和 Telegram 账号。",
+      "step2Title": "添加你的商品",
+      "step2Body": "上传商品目录，即可直接从对话中创建订单。",
+      "step3Title": "在收件箱中完成销售",
+      "step3Body": "回复消息、创建订单、发送付款链接、预约配送，一步到位。"
+    },
+    "faq": {
+      "title": "常见问题",
+      "q1": "Loukdo 支持高棉语吗？",
+      "a1": "支持——完整的界面、帮助中心和客户支持都提供高棉语和英语。",
+      "q2": "员工能在不看到全部数据的情况下使用吗？",
+      "a2": "可以。你可以分配角色，让员工处理对话和订单，同时无法查看财务报表或系统设置。",
+      "q3": "如果我已经有自己的网站怎么办？",
+      "a3": "继续使用即可，把 Loukdo 用于收件箱和订单管理。",
+      "q4": "货款如何到账？",
+      "a4": "款项通过你的支付服务商直接进入你自己的银行或电子钱包账户，Loukdo 从不经手你的资金。",
+      "q5": "如果我离开，数据会怎样？",
+      "a5": "你可以随时导出你的商品、订单和客户数据，即便在取消账户之后也是如此。"
+    }
+  },
+  "about": {
+    "seoTitle": "关于我们",
+    "seoDescription": "Loukdo 诞生于金边，为数百万在聊天应用中经营真实业务的柬埔寨人而打造。",
+    "title": "我们为真正的卖家打造工具",
+    "subtitle": "Loukdo 诞生于金边，为数百万在聊天应用中经营真实业务的柬埔寨人而打造。",
+    "storyTitle": "一切始于一本笔记本",
+    "storyBody": "我们曾观察到一位本地卖家同时管理六个不同的聊天应用。订单来自 Telegram、Messenger 和 Instagram，她唯一的系统是一本写满字迹的笔记本。她不断丢单、混淆付款，压力巨大。我们意识到，必须有更好的方式来支持数字经济的中坚力量。",
+    "storyImageAlt": "一本手写的高棉语销售笔记本，旁边放着显示聊天订单的手机",
+    "beliefsTitle": "我们的理念",
+    "belief1Title": "卖家拥有自己的客户",
+    "belief1Body": "每一位联系人、每一次对话、每一条订单记录都属于卖家，而不属于我们。你可以随时导出。",
+    "belief2Title": "高棉语优先，而非事后添加",
+    "belief2Body": "高棉语不是上线后再叠加的翻译层，而是我们设计、写作与支持的方式。",
+    "belief3Title": "小企业理应获得认真的技术投入",
+    "belief3Body": "系统正常运行、安全性与数据保护不是企业版专属功能，而是基本标准。",
+    "doTitle": "我们的核心业务",
+    "doSubtitle": "Loukdo 是一个社交电商平台，核心包含四大要素：",
+    "omnichatTitle": "全渠道收件箱",
+    "omnichatBody": "所有渠道汇聚于一个收件箱。",
+    "ordersTitle": "订单",
+    "ordersBody": "在聊天中创建，通过 KHQR 付款，由本地快递公司配送。",
+    "productsTitle": "商品",
+    "productsBody": "一个商品目录，同时服务于聊天和直播带货。",
+    "deliveryTitle": "配送",
+    "deliveryBody": "一键操作，交由配送合作伙伴调度。",
+    "companyTitle": "我们的公司",
+    "companyBody": "Loukdo 是 {company} 旗下产品，已在柬埔寨注册。",
+    "companyReg": "注册编号：00072217",
+    "companyAddress": "注册地址：柬埔寨金边吐廓区滨湖1坊7村317街"
+  },
+  "contact": {
+    "seoTitle": "联系我们",
+    "seoDescription": "有关于价格、系统集成或如何开始使用的问题？我们通常在几小时内以高棉语或英语回复。",
+    "title": "联系我们",
+    "subtitle": "有关于价格、系统集成或如何开始使用的问题？我们通常在几小时内以高棉语或英语回复。",
+    "telegramTitle": "Telegram",
+    "telegramBody": "响应速度最快。",
+    "telegramCta": "给我们发消息",
+    "emailTitle": "邮件支持",
+    "emailValue": "support@loukdo.com",
+    "phoneTitle": "电话",
+    "phoneValue": "+855 70 677 666",
+    "formTitle": "发送消息",
+    "formName": "姓名",
+    "formNamePlaceholder": "请输入您的全名",
+    "formEmail": "邮箱",
+    "formEmailPlaceholder": "you{'@'}company.com",
+    "formMessage": "留言",
+    "formMessagePlaceholder": "我们能为您提供什么帮助？",
+    "formSubmit": "发送消息",
+    "formSuccess": "谢谢——我们会尽快回复您。",
+    "hqTitle": "总部",
+    "hqBody": "HVMW+CVH Phnom Penh, Cambodia",
+    "hqNote": "仅接受企业客户预约到访。",
+    "mapAlt": "显示 Loukdo 位于柬埔寨金边总部的地图"
+  },
+  "terms": {
+    "seoTitle": "条款与条件",
+    "seoDescription": "管理 Loukdo 平台访问与使用的条款与条件。",
+    "title": "条款与条件",
+    "updated": "最近更新：{date}",
+    "effective": "生效日期：{date}",
+    "note": "本条款的完整正文以下方英文版本为准。如需正式中文版本，请联系 legal{'@'}loukdo.com。"
+  },
+  "tos": {
+    "seoTitle": "服务条款",
+    "seoDescription": "Loukdo 服务的交付、计费与支持方式。",
+    "title": "服务条款",
+    "updated": "最近更新：{date}",
+    "effective": "生效日期：{date}",
+    "note": "本条款的完整正文以下方英文版本为准。如需正式中文版本，请联系 legal{'@'}loukdo.com。"
+  },
+  "conduct": {
+    "seoTitle": "用户行为准则",
+    "seoDescription": "我们对所有使用 Loukdo 平台的用户的期望。",
+    "title": "用户行为准则",
+    "updated": "最近更新：{date}",
+    "note": "本准则的完整正文以下方英文版本为准。如需正式中文版本，请联系 conduct{'@'}loukdo.com。"
+  },
+  "privacy": {
+    "seoTitle": "隐私与Cookie政策",
+    "seoDescription": "Loukdo 如何收集、使用和保护个人数据，以及平台上 Cookie 的使用方式。",
+    "title": "隐私与Cookie政策",
+    "updated": "最近更新：{date}",
+    "effective": "生效日期：{date}",
+    "note": "本政策的完整正文以下方英文版本为准。如需正式中文版本，请联系 privacy{'@'}loukdo.com。"
+  },
+  "cookies": {
+    "title": "Cookie政策"
+  }
+}

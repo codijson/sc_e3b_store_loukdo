@@ -1,0 +1,95 @@
+/**
+ * colorTokens
+ * -----------
+ * Single source of truth for the system's semantic colour roles
+ * (primary, secondary, success, warning, danger, info). Each role is
+ * defined by ONE base hex; every tonal level is derived from it by
+ * `ColorMixer`, so the palette stays visually consistent and there is
+ * only ever one number to tweak per role.
+ *
+ * Consumed by:
+ *  - tailwind.config.ts        -> utilities like `bg-primary-light`
+ *  - app/assets/scss/_variables.scss -> `--color-primary-light` etc.
+ *    (SCSS can't execute TS, so those values are the same output this
+ *    file produces — see the comment above the CSS vars for how to
+ *    regenerate them if a base colour changes)
+ *
+ * Levels, from least to most saturated presence of the colour:
+ *   low < light < DEFAULT < medium < high < dark
+ */
+
+export type ColorRole = "primary" | "secondary" | "success" | "warning" | "danger" | "info";
+
+export interface ColorScale {
+  low: string;
+  light: string;
+  DEFAULT: string;
+  medium: string;
+  high: string;
+  dark: string;
+}
+
+/** Pure hex/RGB math — no DOM, no framework, fully unit-testable. */
+export class ColorMixer {
+  private static clamp(channel: number): number {
+    return Math.max(0, Math.min(255, Math.round(channel)));
+  }
+
+  private static toRgb(hex: string): [number, number, number] {
+    const normalized = hex.replace("#", "");
+    const value = parseInt(normalized, 16);
+    return [(value >> 16) & 255, (value >> 8) & 255, value & 255];
+  }
+
+  private static toHex([r, g, b]: [number, number, number]): string {
+    return `#${[r, g, b].map(c => this.clamp(c).toString(16).padStart(2, "0")).join("")}`;
+  }
+
+  /** Blends `hex` toward `target` by `weight` (0 = hex, 1 = target). */
+  static mix(hex: string, target: string, weight: number): string {
+    const [r1, g1, b1] = this.toRgb(hex);
+    const [r2, g2, b2] = this.toRgb(target);
+    return this.toHex([r1 + (r2 - r1) * weight, g1 + (g2 - g1) * weight, b1 + (b2 - b1) * weight]);
+  }
+
+  /** Blends toward white — lightens. */
+  static tint(hex: string, amount: number): string {
+    return this.mix(hex, "#ffffff", amount);
+  }
+
+  /** Blends toward black — darkens. */
+  static shade(hex: string, amount: number): string {
+    return this.mix(hex, "#000000", amount);
+  }
+}
+
+/** Builds the six-level scale for one semantic colour from a single base hex. */
+export class ColorScaleFactory {
+  static build(base: string): ColorScale {
+    return {
+      low: ColorMixer.tint(base, 0.88),
+      light: ColorMixer.tint(base, 0.6),
+      DEFAULT: base,
+      medium: ColorMixer.shade(base, 0.15),
+      high: ColorMixer.shade(base, 0.35),
+      dark: ColorMixer.shade(base, 0.55),
+    };
+  }
+}
+
+/** One base hex per semantic role — the only values to edit by hand. */
+const BASE_COLORS: Record<ColorRole, string> = {
+  primary: "#0E529A",
+  secondary: "#14b8a6",
+  success: "#22c55e",
+  warning: "#f59e0b",
+  danger: "#ef4444",
+  info: "#0ea5e9",
+};
+
+export const colorTokens: Record<ColorRole, ColorScale> = Object.fromEntries(
+  (Object.keys(BASE_COLORS) as ColorRole[]).map(role => [
+    role,
+    ColorScaleFactory.build(BASE_COLORS[role]),
+  ])
+) as Record<ColorRole, ColorScale>;
