@@ -5,7 +5,7 @@ import featureImageUrl from "/og/feature-1-v1.png";
 const { t } = useOwnI18n();
 
 const DEFAULT_IMAGE: SeoImage = {
-  url: `https://loukdo.com${featureImageUrl}`,
+  url: `${import.meta.env.NUXT_PUBLIC_SITE_URL}${featureImageUrl}`,
   width: 539,
   height: 405,
   alt: t("features.seoDescription"),

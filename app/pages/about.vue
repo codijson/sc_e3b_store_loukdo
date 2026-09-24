@@ -3,9 +3,8 @@ import type { SeoImage } from "@/core/seo/SeoBuilder";
 import aboutImageUrl from "/og/about-us-v1.png";
 
 const { t } = useOwnI18n();
-
 const DEFAULT_IMAGE: SeoImage = {
-  url: `https://loukdo.com${aboutImageUrl}`,
+  url: `${import.meta.env.NUXT_PUBLIC_SITE_URL}${aboutImageUrl}`,
   width: 588,
   height: 384,
   alt: t("about.seoDescription"),

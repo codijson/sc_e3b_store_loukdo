@@ -132,18 +132,18 @@ export default defineNuxtConfig({
         /*** @default homepage url */
         {
           property: "og:url",
-          content: "https://store.loukdo.com/store-name",
+          content: `${import.meta.env.NUXT_PUBLIC_SITE_URL}/store-name`,
         },
 
         /*** @absolute url */
         {
           property: "og:image",
-          content: "https://loukdo.com/og/home-v1.png",
+          content: `${import.meta.env.NUXT_PUBLIC_SITE_URL}/og/home-v1.png`,
         },
 
         {
           property: "og:image:secure_url",
-          content: "https://loukdo.com/og/home-v1.png",
+          content: `${import.meta.env.NUXT_PUBLIC_SITE_URL}/og/home-v1.png`,
         },
 
         {
@@ -179,7 +179,7 @@ export default defineNuxtConfig({
 
         {
           name: "twitter:image",
-          content: "https://loukdo.com/og/home-v1.png",
+          content: `${import.meta.env.NUXT_PUBLIC_SITE_URL}/og/home-v1.png`,
         },
 
         {
@@ -203,6 +203,7 @@ export default defineNuxtConfig({
         scss: {},
       },
     },
+    envPrefix: ["VITE_", "NUXT_PUBLIC_"],
   },
 
   /*** @nitro */

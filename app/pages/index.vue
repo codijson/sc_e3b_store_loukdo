@@ -6,7 +6,7 @@ import homeImageUrl from "/og/home-v1.png";
 const { t } = useOwnI18n();
 
 const DEFAULT_IMAGE: SeoImage = {
-  url: `https://loukdo.com${homeImageUrl}`,
+  url: `${import.meta.env.NUXT_PUBLIC_SITE_URL}${homeImageUrl}`,
   width: 588,
   height: 331,
   alt: "Loukdo — Chat. Order. Delivered.",

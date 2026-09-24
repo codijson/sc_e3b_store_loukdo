@@ -34,7 +34,7 @@ export interface SeoPayload {
 }
 
 const SITE_NAME = "Loukdo";
-const SITE_URL = "https://loukdo.com";
+const SITE_URL = import.meta.env.NUXT_PUBLIC_SITE_URL;
 // NOTE: this default is an SVG, which will NOT render in most social link
 // previews. Replace with a PNG/JPG (e.g. /og/1.png) before relying on
 // og:image for real social sharing.

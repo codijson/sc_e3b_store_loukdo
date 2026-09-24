@@ -5,7 +5,7 @@ import contactImageUrl from "/og/contact-v1.png";
 const { t } = useOwnI18n();
 
 const DEFAULT_IMAGE: SeoImage = {
-  url: `https://loukdo.com${contactImageUrl}`,
+  url: `${import.meta.env.NUXT_PUBLIC_SITE_URL}${contactImageUrl}`,
   width: 1200,
   height: 302,
   alt: t("contact.seoDescription"),
