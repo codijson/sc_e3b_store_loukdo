@@ -204,6 +204,20 @@ export default defineNuxtConfig({
       },
     },
     envPrefix: ["VITE_", "NUXT_PUBLIC_"],
+    server: {
+      proxy: {
+        "/api/sheets": {
+          target: "https://docs.google.com",
+          changeOrigin: true,
+          // Updated with your actual Sheet ID and export format
+          rewrite: path =>
+            path.replace(
+              /^\/api\/sheets/,
+              "/spreadsheets/d/1PvI0SQRZQ98P1-KycLABgriUFfjghVSxEzOQJ6-a0rs/export?format=xlsx"
+            ),
+        },
+      },
+    },
   },
 
   /*** @nitro */

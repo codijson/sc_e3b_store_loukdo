@@ -2,6 +2,7 @@
 import type { SeoImage } from "@/core/seo/SeoBuilder";
 
 import homeImageUrl from "/og/home-v1.png";
+import { fetchRemoteTranslations } from "@/core/i18n/SheetsEngine";
 
 const { t } = useOwnI18n();
 
@@ -20,6 +21,14 @@ usePageSeo({
 });
 
 const { isLoading } = useSkeleton();
+
+async function fetchLanguages() {
+  const response = await fetchRemoteTranslations();
+
+  console.log(response);
+}
+
+onMounted(fetchLanguages);
 </script>
 
 <template>

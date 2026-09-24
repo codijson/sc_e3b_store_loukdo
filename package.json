@@ -15,9 +15,11 @@
   },
   "dependencies": {
     "@nuxtjs/color-mode": "^3.5.2",
+    "axios": "^1.20.0",
     "nuxt": "^3.15.4",
     "vue": "^3.5.13",
-    "vue-router": "^4.5.0"
+    "vue-router": "^4.5.0",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.13.1",
